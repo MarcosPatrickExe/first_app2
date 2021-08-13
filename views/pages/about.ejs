@@ -1,0 +1,13 @@
+
+
+<div class="jumbutron">
+    <h1>O time!</h1>
+    <div class="row">
+            <h1 style="text-align: center;">ABOUT</h1>>
+
+            <% for(user of users){ %>
+                <h2><% user.name %></h2>
+                <img class="img-responsive" style="height: 250px" src="<%= user.src%>">
+            <% } %>
+    </div>
+</div>
