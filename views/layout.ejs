@@ -7,23 +7,24 @@
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
-        <title>My first app</title>
+        <title class="bg-color-blue">My first app</title>
     </head> 
-  <body>
+  <body style="background-color: black;">
     
-        <div class="display-3 text-center"> First App </div>
+        <div class="display-4 p-2 text-center text-white bg-danger"> First App </div>
 
-        <h1>Incorporando o Header abaixo: </h1>
         <%- include('pages/header'); %>
-        <%- body %>
+        <%- include('pages/siteBody'); %>
+        <%- include('pages/footer') %>
 
-        <main>
+        <%  /*  %>
+         <main>
             <div class="container">
             
                   <%- include('pages/about'); %>
             </div>
         </main>    
-
+        <% */ %>
     
         <script src="script.js"></script>
   </body>

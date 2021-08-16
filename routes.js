@@ -1,6 +1,4 @@
-const express = require("express");
-const router = express.Router();
-//ou const router = require("express").Router();
+const router = require("express").Router();
 
 //let layout = require("./views/layout.ejs");
 
