@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
     <%- include('../partials/cabecalho') %>
-    <title>Gym Academy - Cadastro</title>
+    <title>Gym Academy - Atualizar</title>
 </head>
 <body>
        <%- include('../partials/header') %>
 
         <div class="jumbotron">
-            <h2>Usuários Cadastrados</h2>
-            <p>Lista de usuários Cadastrados no sistema.</p>            
-            <table class="table table-hover">
+            <h2>Altere os dados dos usuários cadastrados</h2>
+            <p>Lista de usuários do sistema: </p>    
+                    
+            <table class="table table-hover bg-info">
                 <thead>
                 <tr>
                     <th>Nome</th>
@@ -27,34 +28,34 @@
                     <% let linkRemove="/cadastro/remove/"; %>
                     <% let linkUpdate="/cadastro/update/"; %>
 
-                    <% for(let index=0;index<users.length;index++){ %>
+                    <% for(let index=0; index<users.length; index++){ %>
                         <tr>
                             
                         <td data-index-row="<%=index%>">
                             <span  class="show"><%= users[index].name %></span>
-                            <input type="text" name="name"  class="hidden" value="<%= users[index].name %>" disabled>
+                            <input type="text" name="name"  class="hidden" value="<%= users[index].name %>">
                         </td>
                         <td data-index-row="<%=index%>">
                             <span  class="show"><%= users[index].email %></span>
-                            <input type="text" name="email"  class="hidden" value="<%= users[index].email %>" disabled>
+                            <input type="text" name="email"  class="hidden" value="<%= users[index].email %>">
                         </td>
                         <td data-index-row="<%=index%>">
                             <span  class="show"><%= users[index].address %></span>
-                            <input type="text" name="address"  class="hidden" value="<%= users[index].address %>" disabled>
+                            <input type="text" name="address"  class="hidden" value="<%= users[index].address %>">
                         </td>
                         <td data-index-row="<%=index%>">
                             <span  class="show"><%= users[index].age %></span>
-                            <input type="text" name="age"  class="hidden" value="<%= users[index].age %>" disabled>
+                            <input type="text" name="age"  class="hidden" value="<%= users[index].age %>">
                             
                         </td>
                         <td data-index-row="<%=index%>">
                             <span  class="show"><%= users[index].height %></span>
-                            <input type="text" name="height"  class="hidden" value="<%= users[index].height %>" disabled>
+                            <input type="text" name="height"  class="hidden" value="<%= users[index].height %>">
                             
                         </td>
                         <td data-index-row="<%=index%>">
                             <span  class="show"><%= users[index].vote %></span>
-                            <input type="text" name="vote" class="hidden" value="<%= users[index].vote %>" disabled>
+                            <input type="text" name="vote" class="hidden" value="<%= users[index].vote %>">
                             
                         </td>
                         <td data-index-row="<%=index%>" class="hidden" data-index-row="<%=index%>"><input type="button" value="Atualizar" class="hidden" ></td>
