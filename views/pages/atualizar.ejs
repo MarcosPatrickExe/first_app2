@@ -11,9 +11,9 @@
             <h2>Altere os dados dos usuários cadastrados</h2>
             <p>Lista de usuários do sistema: </p>    
                     
-            <table class="table table-hover bg-info">
+            <table class="table table-hover">
                 <thead>
-                <tr>
+                <tr class="bg-danger">
                     <th>Nome</th>
                     <th>Endereço</th>
                     <th>Email</th>
@@ -33,29 +33,29 @@
                             
                         <td data-index-row="<%=index%>">
                             <span  class="show"><%= users[index].name %></span>
-                            <input type="text" name="name"  class="hidden" value="<%= users[index].name %>">
+                            <input type="text" name="name" class="hidden" value="<%= users[index].name %>" size="3">
                         </td>
                         <td data-index-row="<%=index%>">
                             <span  class="show"><%= users[index].email %></span>
-                            <input type="text" name="email"  class="hidden" value="<%= users[index].email %>">
+                            <input type="text" name="email"  class="hidden" value="<%= users[index].email %>" size="3">
                         </td>
                         <td data-index-row="<%=index%>">
                             <span  class="show"><%= users[index].address %></span>
-                            <input type="text" name="address"  class="hidden" value="<%= users[index].address %>">
+                            <input type="text" name="address"  class="hidden" value="<%= users[index].address %>" size="3">
                         </td>
                         <td data-index-row="<%=index%>">
                             <span  class="show"><%= users[index].age %></span>
-                            <input type="text" name="age"  class="hidden" value="<%= users[index].age %>">
+                            <input type="text" name="age"  class="hidden" value="<%= users[index].age %>" size="3">
                             
                         </td>
                         <td data-index-row="<%=index%>">
                             <span  class="show"><%= users[index].height %></span>
-                            <input type="text" name="height"  class="hidden" value="<%= users[index].height %>">
+                            <input type="text" name="height"  class="hidden" value="<%= users[index].height %>" size="3">
                             
                         </td>
                         <td data-index-row="<%=index%>">
                             <span  class="show"><%= users[index].vote %></span>
-                            <input type="text" name="vote" class="hidden" value="<%= users[index].vote %>">
+                            <input type="text" name="vote" class="hidden" value="<%= users[index].vote %>" size="3">
                             
                         </td>
                         <td data-index-row="<%=index%>" class="hidden" data-index-row="<%=index%>"><input type="button" value="Atualizar" class="hidden" ></td>
