@@ -53,6 +53,9 @@ app.use(express.json()); // Used to parse JSON bodies
 app.use(express.urlencoded()); //Parse URL-encoded bodies
 */
 
+
+app.use(express.static(__dirname+"public"));
+
 app.use(express.urlencoded({extended: true}));//FUNDAMENTAL PARA QUE O JSON SEJA CONVERTIDO EM OBJETO QUANDO CHEGAR NAS ROTAS DO SERVIDOR
 
 //criando e usando rotas simples que estão no arquivo "routes.js"

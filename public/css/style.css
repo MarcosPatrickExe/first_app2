@@ -1,6 +1,6 @@
 body{
     font-family: 'Montserrat', sans-serif;
-    background-image: linear-gradient(to right, rgb(255, 98, 171), rgb(103, 67, 231) );
+  /*  background-image: linear-gradient(to right, rgb(255, 98, 171), rgb(103, 67, 231) ); */
 }
 
 .show{
@@ -9,4 +9,39 @@ body{
 
 .hidden{
     display: none;
+}
+
+
+/*estilo do arquivo "header.ejs" */
+.navbar-center{
+    position: absolute;
+    left: 21%;
+    height: 100%;
+    width: 55%;
+    transform: rotate(-20%);
+}
+
+.navbar-center li{
+    position: relative;
+    height: 100%;
+    width: 22%;
+    margin-left: 3%;
+    padding: 0%;
+   /* padding: 1.1% 0% 1.5% 5.1%; */
+}
+
+.navbar-center li:hover{
+    background-color: rgb(97, 96, 96);
+    transition: all 1s ease 0s;
+}
+
+.navbar-center > li > a{ 
+    font-size: 110%; 
+    position: relative;
+    text-align: center;
+    top: 25%;
+    /*
+    left: 30%;
+    top: 50%;
+    transform: translate(-30%, -50%); */
 }

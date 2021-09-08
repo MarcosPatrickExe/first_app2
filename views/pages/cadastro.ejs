@@ -14,7 +14,9 @@
             <p>Lista de usuários Cadastrados no sistema.</p>            
             
 
-                <form action="/cadastrarDados" method="POST">
+            <!-- Exemplo usando o o proprio elemento "form" para fazer a requisição: -->
+            <!-- <form action="/cadastrarDados" method="POST" target="hiddenFrame"> -->
+                <form target="hiddenFrame"> 
                     <%
                     let indices = Object.keys(users[0])
                     
@@ -27,16 +29,142 @@
                     
                     <% } %>
             
+                    <!-- type="submit"  -->
                     <button type="submit" class="btn btn-primary" style="margin-left: 40%;">Enviar</button>
                 </form>
           </div>
         </div>
 
+        <!-- Esse elemento 'iframe' será apontado pelo 'form' através do atributo ("target="hiddenFrame") assim que o evento 'submit' ocorrer para que a página não seja redirecionada automaticamente para outra páigina-->
+        <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
 
 
 
         <script type="text/javascript">
-                console.log("usuário cadastrados até o momento: "+users);
+                //console.log("usuário cadastrados até o momento: "+users);
+
+            function add(event){
+                    let inputs = document.getElementsByTagName("input");
+
+
+                    for(let campo in inputs){
+                        if (inputs[campo].value ==""){
+                             alert("Não deixe nenhum campo vazio!!!");
+                             return false;           
+                        }             
+                    }
+
+                    let http = new XMLHttpRequest();
+                    const route = "/cadastrarDados";
+                    
+                    //preenche um objeto com o indice da linha da tabela e os valores dos campos input do tipo text
+                    let data = {
+                        codigoID: 0, //esse dado nao existe no vetor Users do lado do servidor (backend), mas preciso dele para apontar o indice do vetor que quero modificar
+                        name: inputs[0].value,
+                        address: inputs[1].value,
+                        email: inputs[2].value,
+                        age: inputs[3].value,
+                        heigth: inputs[4].value,
+                        vote: inputs[5].value
+                    }
+
+                    http.open('POST', route, true); //abre uma comunicação com o servidor através de uma requisição POST
+                    //Se no servidor nao houver um elemento esperando por uma mensagem POST (ex. router.post()) para a rota /cadastro/update ocorrerar um erro: 404 - File Not Found
+
+                    //Dados HTML teria no cabecalho HEADER (da mensagem HTTP) - Content-Type= text/html
+                    //Dados estruturados como querystring (ex: http//www.meu.com.br:3030/?campo=meu&campo2=10) -  Content-Type=x-www-form-urlencoded
+                    //Dados no formato de Objeto Javascript para troca de informacoes (JSON) Content-Type=application/json : Ex.: {key1:value1,key2:value2}
+                    http.setRequestHeader('Content-Type','application/json'); //constroi um cabecalho http para envio dos dados
+         
+
+                    for(let campo in inputs){
+                         inputs[campo].disabled=true;                      
+                    }
+
+                    // essa função está sendo colocada aqui só para dar uma parada e você poder ver os inputs desabilitados
+                    //funcao que espera um tempo N, dado em milissegundos, e então chama uma função (callback). No caso, vamos usar 2000 ms = 2s
+                    //essa funcao foi construida somente para que voce possa ver os inputs ficando desabilitados. Nao precisa usar.
+                    //function sleep(milliseconds) {
+                    /*    
+                    const date = Date.now();
+                    let currentDate = null;
+
+                    do {
+                        currentDate = Date.now();
+                    } while (currentDate - date < milliseconds);
+                    */
+                    //console.log("Mostra essa mensagem no console, primeiro!");
+               //     sleep(2000);//fazendo um pequeno delay para o envio dos dados
+                    //console.log("Pronto, você consegue ver seus inputs desabilitados!");
+        
+                    alert("objeto enviado: "+JSON.stringify(data));
+
+                    http.send(JSON.stringify(data));//enviando dados para o servidor
+
+                    /* este codigo abaixo foi colocado para que a interface de cadastro so seja
+                     modificada quando se receber um aviso do servidor que a modificacao foi 
+                     feita com sucesso. No caso o aviso vem na forma do codigo 200 de 
+                     HTTP: OK */
+                    http.onload = ()=>{
+                        /*
+                                readyState:
+                                0: request not initialized
+                                1: server connection established
+                                2: request received
+                                3: processing request
+                                4: request finished and response is ready
+                                
+                                status:
+                                200: "OK"
+                                403: "Forbidden"
+                                404: "Page not found"
+                        
+                        ** Baseado nos valores acima apresentados, o codigo abaixo mostra o 
+                        que foi enviado pelo servidor como resposta ao envio de dados. No caso, 
+                        se o request foi finalizado e o response foi recebido, a mensagem 
+                        recebida do servidor eh mostrada no console do navegador. esse codigo 
+                        foi feito apenas para verificar se tudo ocorreu bem no envio 
+                        */
+
+                        if (http.readyState === 4 && http.status === 200) { //testa se o envio foi bem sucedido
+                             for(campo in inputs){
+                                    inputs[campo].disabled = false;//habilita novamente os inputs para escrita  
+                                    console.log("dados enviados!! readyState: 4 // status: 200");
+                             }
+                        }
+
+                        //esconde os campos de preenchimento para o cadastro
+                        /*for(let cont=0;cont<inputs.length;cont++){
+                            
+                            if(inputs[cont].className=="show"){
+                                inputs[cont].className="hidden";
+                                if(inputs[cont].disabled==false){
+                                    inputs[cont].disabled=true;
+                                }
+                            }
+                        }
+                        */
+                    } 
+                
+                
+                    http.onerror = ()=>{
+                        console.log("Ocorreu erro no processamento dos dados no servidor: ", http.responseText);
+                    };
+
+
+
+
+                    http.readystatechange = ()=>{
+                        if (http.readyState === 4 && http.status === 200) { //testa se o envio foi bem sucedido
+                          console.log("enviado com sucesso!! Mensagem da funcao 'readystatechange' :: "+http.responseText);
+
+                        }
+
+                    };
+            }
+
+
+            document.getElementsByTagName('form')[0].addEventListener("submit", add);
 
 
         </script>

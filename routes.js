@@ -2,13 +2,14 @@
 const express = require("express");
 //const expApp = exp();
 const router = express.Router();
-const convertBody = require("body-parser").json();//Importando variável que permitirá a leitura dos campos do formulário
-//const convertBody = require("body-parser").urlencoded({ extended: true });
+const convertJSONbody = require("body-parser").json();//Importando variável que permitirá a leitura dos campos do formulário
+//const convertURLBody = require("body-parser").urlencoded({ extended: true });
 
 const {v4 : gerarIdAleatorio} = require("uuid");
 
 //express().use(express.urlencoded({extended: true}));
 
+router.use(express.static('public'));
 
 //let layout = require("./views/layout.ejs");
 /*Especifica a pasta contendo arquivos estáticos.
@@ -41,14 +42,20 @@ router.get('/sign-in', function(req, res){
 //npm cache clean --force
 
 //--------------------------------------------------------------------------------------------
-router.post('/cadastrarDados', convertBody, (req, res)=>{
+router.post('/cadastrarDados', convertJSONbody, (req, res)=>{
 
+    console.log("body da requisicao recebida: ");
+    console.dir(req.body);
+
+    /*se o formulario requisitar com o metodo "GET" você utilizaria a propriedade "query" para acessar os dados:
     console.log("Dados recebidos no server: ");
-    console.log("name: "+req.body.name);
-    console.log("address: "+req.body.address);
-    console.log("email: "+req.body.email);
-    console.log("age: "+req.body.age);
-    console.log("height: "+req.body.height);
+    console.log("name: "+req.query.name);
+    console.log("address: "+req.query.address);
+    console.log("email: "+req.query.email);
+    console.log("age: "+req.query.age);
+    console.log("height: "+req.query.height);
+    */
+
 
     let novosDados = {
         codigoID: gerarIdAleatorio(),
@@ -62,8 +69,11 @@ router.post('/cadastrarDados', convertBody, (req, res)=>{
 
     users.push({...novosDados});
 
-    console.log("usuário cadastrado com sucesso!!! Dados recebidos: "+novosDados.name); 
-    res.send("usuário atualizado com sucesso!!! response do servidor"+req.body);
+    console.log("usuário cadastrado com sucesso!!! Dados recebidos de: "+novosDados.name); 
+    //res.send("usuário atualizado com sucesso!!! response do servidor: "+req.body.name);
+    //res.render('./pages/cadastro');
+    //convert the response in JSON format
+    //res.send(JSON.stringify(response));
 });
 //--------------------------------------------------------------------------------------------
 
