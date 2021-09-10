@@ -3,6 +3,7 @@
 <head>
     <%- include('../partials/cabecalho') %>
     <title>Gym Academy - Cadastro</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body style="background-color: rgb(41, 40, 40);">
        <%- include('../partials/header') %>
@@ -23,7 +24,7 @@
                     for(let item=1; item < indices.length; item++){ %>
                     
                         <div class="form-group ">
-                            <label for="<%= indices[item] %>"> <%= indices[item] %> </label>
+                            <label class="field_name" for="<%= indices[item] %>"> <%= indices[item] %> </label>
                             <input id="<%= indices[item] %>" class="form-control" name="<%= indices[item] %>"  placeholder="<%= indices[item] %>"  style="width: 75%;" />
                         </div>
                     
@@ -96,8 +97,6 @@
                     //console.log("Mostra essa mensagem no console, primeiro!");
                //     sleep(2000);//fazendo um pequeno delay para o envio dos dados
                     //console.log("Pronto, você consegue ver seus inputs desabilitados!");
-        
-                    alert("objeto enviado: "+JSON.stringify(data));
 
                     http.send(JSON.stringify(data));//enviando dados para o servidor
 
@@ -129,7 +128,7 @@
                         if (http.readyState === 4 && http.status === 200) { //testa se o envio foi bem sucedido
                              for(campo in inputs){
                                     inputs[campo].disabled = false;//habilita novamente os inputs para escrita  
-                                    console.log("dados enviados!! readyState: 4 // status: 200");
+                                    alert("dados enviados!! readyState: 4 // status: 200");
                              }
                         }
 

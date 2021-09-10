@@ -22,6 +22,7 @@
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.1",
     "faker": "^5.5.3",
+    "font-awesome": "^4.7.0",
     "uuid": "^8.3.2"
   }
 }

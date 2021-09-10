@@ -1,7 +1,10 @@
+/* @import url('../../node_modules/font-awesome/css/font-awesome.min.css'); */
+
 body{
     font-family: 'Montserrat', sans-serif;
   /*  background-image: linear-gradient(to right, rgb(255, 98, 171), rgb(103, 67, 231) ); */
 }
+
 
 .show{
     display: inline-block;
@@ -12,7 +15,7 @@ body{
 }
 
 
-/*estilo do arquivo "header.ejs" */
+/*------------------------ estilo do arquivo "header.ejs"--------------------------*/
 .navbar-center{
     position: absolute;
     left: 21%;
@@ -44,4 +47,8 @@ body{
     left: 30%;
     top: 50%;
     transform: translate(-30%, -50%); */
+}
+
+.field_name{
+    color: black;
 }
